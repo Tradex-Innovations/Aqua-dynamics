@@ -7,7 +7,8 @@ import { assetPath } from '../lib/asset-path';
 const artwork = assetPath('/images/wingfoil-deep-ocean-footer-v3.webp');
 
 // Animate the existing photograph in image coordinates, keeping the sky clear
-// and the wing, rider and foil together as one gently floating subject.
+// and the rider and foil together as one gently floating subject. The wing
+// additionally pivots at the raised hand, with softer motion toward its tips.
 const fragmentShader = `
   uniform sampler2D photograph;
   uniform vec2 cropScale;
@@ -26,6 +27,21 @@ const fragmentShader = `
     floating.y += sin(time * .94) * .0035;
     floating.x += sin(time * .49) * .0015;
     uv -= floating * rider;
+
+    // The raised hand is the fixed pivot: the grip stays attached while the
+    // canopy catches the wind. Work in aspect-correct image coordinates.
+    vec2 grip = vec2(.778, .406);
+    float wingBottom = .405 + max(uv.x - grip.x, 0.0) * .68;
+    float wing = smoothstep(.725, .748, uv.x) * (1.0 - smoothstep(.90, .925, uv.x));
+    wing *= smoothstep(.27, .295, uv.y) * (1.0 - smoothstep(wingBottom + .005, wingBottom + .035, uv.y));
+    vec2 fromGrip = (uv - grip) * vec2(1.777, 1.0);
+    float sway = sin(time * .86) * .032 + sin(time * 1.53) * .008;
+    float c = cos(sway), s = sin(sway);
+    vec2 turned = vec2(c * fromGrip.x - s * fromGrip.y, s * fromGrip.x + c * fromGrip.y);
+    vec2 wingShift = (turned - fromGrip) / vec2(1.777, 1.0);
+    float tip = smoothstep(.012, .14, length(fromGrip));
+    wingShift.y += sin(time * 2.05 - fromGrip.x * 28.0) * .0018 * tip;
+    uv += wingShift * wing;
 
     float water = smoothstep(.605, .68, uv.y);
     float openWater = water * (1.0 - rider * .96);

@@ -34,7 +34,7 @@ The video plays muted and inline, loops and includes a play/pause control. Playb
 
 ## Living footer
 
-`components/LivingFooter.jsx` animates the existing wingfoil photograph with a WebGL shader: moving ocean ripples, subtle underwater sunlight and a gentle bob of the wing, rider and foil together. Pointer movement adds a small water drift. The sky and overlaid contact text remain clear, and the complete wordmark remains visible.
+`components/LivingFooter.jsx` animates the existing wingfoil photograph with a WebGL shader: moving ocean ripples, subtle underwater sunlight and a gentle bob of the wing, rider and foil together. The wing also sways independently around the rider’s raised hand, with light flutter toward the tips while the grip stays attached. Pointer movement adds a small water drift. The sky and overlaid contact text remain clear, and the complete wordmark remains visible.
 
 The circular pause/play control stops and resumes the motion. Rendering is capped at 30fps and pauses offscreen and in hidden tabs. Reduced-motion preferences, unavailable WebGL and context loss use the original still image. The photo and animation both respect the GitHub Pages base path.
 
