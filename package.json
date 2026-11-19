@@ -1,0 +1,9 @@
+{
+  "name": "aqua-dynamics",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix aqua-redesign run dev",
+    "start": "npm --prefix aqua-redesign start",
+    "check": "npm --prefix aqua-redesign run check"
+  }
+}
