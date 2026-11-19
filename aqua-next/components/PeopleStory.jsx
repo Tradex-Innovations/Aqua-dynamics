@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { assetPath } from '../lib/asset-path';
 import { useEffect, useRef, useState } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -92,7 +93,7 @@ export default function PeopleStory() {
 
   return <section id="people" className="people-story" data-header-theme="light" aria-labelledby="people-title">
     <div className="people-story-main">
-      <div className="people-story-photo"><Image src="/images/people/teamwork.webp" alt="Aqua Dynamics employees in blue shirts carefully assembling textile components together at a workshop table" fill sizes="100vw" quality={85} /></div>
+      <div className="people-story-photo"><Image src={assetPath('/images/people/teamwork.webp')} alt="Aqua Dynamics employees in blue shirts carefully assembling textile components together at a workshop table" fill sizes="100vw" quality={85} /></div>
       <div className="people-story-shade" />
       <div className="people-story-copy page-gutter">
         <h2 id="people-title" data-reveal>Behind every seam.<br /><em>Someone extraordinary.</em></h2>
@@ -114,7 +115,7 @@ export default function PeopleStory() {
         </div>
         <div className="people-details-photo">
           {stories.map((item, index) => <div key={item.image} className={`people-detail-image${active === index ? ' is-active' : ''}`} aria-hidden={active !== index}>
-            <Image src={`/images/people/${item.image}.webp`} alt={item.alt} fill sizes="(max-width:760px) 90vw, 46vw" quality={85} />
+            <Image src={assetPath(`/images/people/${item.image}.webp`)} alt={item.alt} fill sizes="(max-width:760px) 90vw, 46vw" quality={85} />
           </div>)}
         </div>
         <button className="people-details-close" onClick={() => { setExpanded(false); exploreButton.current?.focus({ preventScroll: true }); }} aria-label="Close people story"><span aria-hidden="true">×</span></button>

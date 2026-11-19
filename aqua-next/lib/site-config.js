@@ -1,4 +1,6 @@
+import { assetPath } from './asset-path';
+
 export const siteConfig = {
-  heroVideo: '/videos/aqua-dynamics-hero.mp4',
-  heroPoster: '/videos/aqua-dynamics-hero.poster.jpg',
+  heroVideo: assetPath('/videos/aqua-dynamics-hero.mp4'),
+  heroPoster: assetPath('/videos/aqua-dynamics-hero.poster.jpg'),
 };

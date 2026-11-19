@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { assetPath } from '../lib/asset-path';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -98,11 +99,11 @@ export default function ProductExperience() {
         {featureNames.map((name, i) => <button ref={element => { pins.current[i] = element; }} key={name} className={`feature-pin ${state.phase === i ? 'is-active' : ''}`} onClick={() => select(product.id, i)} aria-label={`Explore ${name.toLowerCase()}`} aria-pressed={state.phase === i} style={{ transform: `translate(${43 + i * 5}vw, ${22 + i * 5}vh) translate(-50%, -50%)` }}><span aria-hidden="true" /></button>)}
         <div ref={callout} id="feature-description" className="feature-callout" aria-live="polite"><h3>{state.phase >= 0 ? feature : ''}</h3></div>
       </div>
-      <button className="product-inset" onClick={() => photoDialog.current.showModal()} aria-label={`View ${product.name} in the elements`}><span className="product-inset-photo"><Image src={`/images/${product.image}`} alt={product.alt} fill sizes="180px" quality={85} /><span aria-hidden="true">↗</span></span></button>
+      <button className="product-inset" onClick={() => photoDialog.current.showModal()} aria-label={`View ${product.name} in the elements`}><span className="product-inset-photo"><Image src={assetPath(`/images/${product.image}`)} alt={product.alt} fill sizes="180px" quality={85} /><span aria-hidden="true">↗</span></span></button>
       <div className="stage-utilities"><button onClick={() => engine.current?.reset()} aria-label="Reset product rotation"><span aria-hidden="true">⟲</span></button><a href="#factory" aria-label="Continue to the factory"><span aria-hidden="true">↓</span></a></div>
       <div className="stage-footer page-gutter"><nav className="product-dock" aria-label="Select product">{products.map(item => <a key={item.id} href={`#${item.id}`} onClick={event => { event.preventDefault(); select(item.id); }} aria-current={item.id === product.id ? 'true' : undefined} className={item.id === product.id ? 'active' : ''}><ProductGlyph id={item.id} /><span>{item.name}</span></a>)}</nav></div>
       <div className="stage-progress" aria-hidden="true"><span /></div>
     </div>
-    <dialog ref={photoDialog} className="product-photo-dialog" aria-labelledby="product-photo-title"><button className="dialog-x" onClick={() => photoDialog.current.close()} aria-label="Close product photograph">×</button><div className="product-photo-large"><Image src={`/images/${product.image}`} alt={product.alt} fill sizes="90vw" quality={85} /></div><div className="product-photo-caption"><h2 id="product-photo-title">{product.name}</h2></div></dialog>
+    <dialog ref={photoDialog} className="product-photo-dialog" aria-labelledby="product-photo-title"><button className="dialog-x" onClick={() => photoDialog.current.close()} aria-label="Close product photograph">×</button><div className="product-photo-large"><Image src={assetPath(`/images/${product.image}`)} alt={product.alt} fill sizes="90vw" quality={85} /></div><div className="product-photo-caption"><h2 id="product-photo-title">{product.name}</h2></div></dialog>
   </section>;
 }

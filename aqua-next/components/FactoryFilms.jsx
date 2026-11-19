@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { assetPath } from '../lib/asset-path';
 import { factoryChapterStops, factoryMotion } from '../lib/factory-motion.mjs';
 
 const films = [
@@ -108,8 +109,8 @@ export default function FactoryFilms() {
         </div>
       </div>
       <div className="factory-film-window">
-        {films.map((film, index) => <div ref={element => { cards.current[index] = element; }} key={film.file} className={`factory-film-layer film-${index}${active === index ? ' is-active' : ''}`} style={{ backgroundImage: `url('/videos/${film.file}.poster.jpg')` }} aria-hidden={active !== index}>
-          <video ref={element => { videos.current[index] = element; }} className={ready[index] ? 'is-ready' : ''} onLoadedData={() => setReady(previous => ({ ...previous, [index]: true }))} src={near ? `/videos/${film.file}.mp4` : undefined} poster={`/videos/${film.file}.poster.jpg`} muted loop playsInline preload="auto" aria-label={film.description} />
+        {films.map((film, index) => <div ref={element => { cards.current[index] = element; }} key={film.file} className={`factory-film-layer film-${index}${active === index ? ' is-active' : ''}`} style={{ backgroundImage: `url('${assetPath(`/videos/${film.file}.poster.jpg`)}')` }} aria-hidden={active !== index}>
+          <video ref={element => { videos.current[index] = element; }} className={ready[index] ? 'is-ready' : ''} onLoadedData={() => setReady(previous => ({ ...previous, [index]: true }))} src={near ? assetPath(`/videos/${film.file}.mp4`) : undefined} poster={assetPath(`/videos/${film.file}.poster.jpg`)} muted loop playsInline preload="auto" aria-label={film.description} />
         </div>)}
       </div>
       <div className="factory-film-shade" />

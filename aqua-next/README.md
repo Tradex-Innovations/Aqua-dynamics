@@ -43,3 +43,17 @@ The video plays muted and inline, loops and includes a play/pause control. Playb
 - `app/globals.css`: layout and responsive styles.
 
 Photography and company context are reused from the existing redesign, originally sourced from [Aqua Dynamics](https://www.aquadynamics.lk/). Fonts are local with licenses included. The existing `aqua-redesign/` remains independent.
+
+## GitHub Pages
+
+The repository workflow `.github/workflows/deploy-pages.yml` builds and publishes `aqua-next/`, runs the seven regression checks, and deploys its static `out/` directory. Select **GitHub Actions** under the repository’s **Settings → Pages → Build and deployment → Source**. GitHub requires a public repository or an eligible paid plan for Pages hosting.
+
+After Pages is enabled, pushes to `main` that change this app trigger deployment. The workflow can also be started manually from Actions. It obtains the correct site URL and base path from GitHub, including support for a repository URL such as `https://tradex-innovations.github.io/Aqua-dynamics/`.
+
+To check the Pages export locally:
+
+```sh
+STATIC_EXPORT=true NEXT_PUBLIC_BASE_PATH=/Aqua-dynamics SITE_URL=https://tradex-innovations.github.io/Aqua-dynamics npm run build
+```
+
+Images and videos use `lib/asset-path.js` so they load beneath the repository path. Static export disables the server-only image optimizer; normal local development retains image optimization.

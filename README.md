@@ -1,5 +1,7 @@
 # Aqua Dynamics — Engineered for the Elements
 
+The current Next.js landing page lives in **[aqua-next](aqua-next/README.md)**. Its GitHub Pages deployment is configured in `.github/workflows/deploy-pages.yml`. The instructions below describe the earlier independent static redesign.
+
 An interactive redesign of [aquadynamics.lk](https://www.aquadynamics.lk/), with ocean tones, oversized editorial typography, lime accents and original brand photography.
 
 ## Run locally

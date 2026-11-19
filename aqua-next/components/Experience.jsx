@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { assetPath } from '../lib/asset-path';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -16,7 +17,7 @@ function Arrow({ diagonal = false }) {
   return <svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={diagonal ? 'M5 19 19 5M5 5h14v14' : 'M4 12h15m-6-6 6 6-6 6'} stroke="currentColor" strokeWidth="1.5" /></svg>;
 }
 function Photo({ src, alt = '', sizes = '100vw', eager = false, className = '' }) {
-  return <Image src={`/images/${src}`} alt={alt} fill sizes={sizes} quality={85} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : undefined} className={className} />;
+  return <Image src={assetPath(`/images/${src}`)} alt={alt} fill sizes={sizes} quality={85} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : undefined} className={className} />;
 }
 function CTA({ children, href, onClick, dark = false }) {
   const content = <><span>{children}</span><span className="cta-icon"><Arrow /></span></>;
@@ -100,7 +101,7 @@ export default function Experience() {
 
   return <div ref={root} className="experience">
     <a className="skip-link" href="#main">Skip to content</a>
-    <header ref={header} className="site-header"><a href="#home" className="brand" aria-label="Aqua Dynamics home"><Image src="/images/logo-white.png" alt="Aqua Dynamics" width={170} height={52} preload /></a><button className="menu-button" onClick={() => menu.current.showModal()} aria-label="Open navigation" aria-haspopup="dialog" aria-controls="navigation-dialog"><span className="menu-lines" aria-hidden="true"><i /><i /></span></button></header>
+    <header ref={header} className="site-header"><a href="#home" className="brand" aria-label="Aqua Dynamics home"><Image src={assetPath('/images/logo-white.png')} alt="Aqua Dynamics" width={170} height={52} preload /></a><button className="menu-button" onClick={() => menu.current.showModal()} aria-label="Open navigation" aria-haspopup="dialog" aria-controls="navigation-dialog"><span className="menu-lines" aria-hidden="true"><i /><i /></span></button></header>
     <nav className="progress-rail" aria-label="Page chapters"><a href="#home" title="Opening" aria-label="Opening" /><a href="#products" title="Our elements" aria-label="Our elements" /><a href="#factory" title="The making" aria-label="The making" /><a href="#people" title="Our people" aria-label="Our people" /><a href="#contact" title="Contact" aria-label="Contact" /><span /></nav>
     <main id="main">
       <section id="home" className="hero" data-header-theme="dark"><HeroMedia /><div className="hero-shade" /><h1 className="hero-title"><span>Made for what</span><span><em>moves you.</em></span></h1><div className="hero-footer page-gutter"><CTA href="#products">Explore</CTA></div></section>
