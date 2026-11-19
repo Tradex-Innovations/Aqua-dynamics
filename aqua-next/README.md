@@ -46,6 +46,8 @@ Photography and company context are reused from the existing redesign, originall
 
 ## GitHub Pages
 
+Deployment address: **https://tradex-innovations.github.io/Aqua-dynamics/**. The repository is public and the Pages source is configured as **GitHub Actions**.
+
 The repository workflow `.github/workflows/deploy-pages.yml` builds and publishes `aqua-next/`, runs the seven regression checks, and deploys its static `out/` directory. Select **GitHub Actions** under the repository’s **Settings → Pages → Build and deployment → Source**. GitHub requires a public repository or an eligible paid plan for Pages hosting.
 
 After Pages is enabled, pushes to `main` that change this app trigger deployment. The workflow can also be started manually from Actions. It obtains the correct site URL and base path from GitHub, including support for a repository URL such as `https://tradex-innovations.github.io/Aqua-dynamics/`.
