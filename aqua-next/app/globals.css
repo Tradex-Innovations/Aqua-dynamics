@@ -204,6 +204,11 @@ dialog{color:var(--ink);background:var(--paper);border:0;padding:0;max-height:92
 .closing-scene{position:relative;isolation:isolate;overflow:hidden;min-height:700px;height:100svh;color:var(--ink);background:#eef3ed}
 .closing-artwork{position:absolute;inset:0;z-index:-1;pointer-events:none}
 .closing-artwork>img{object-position:78% bottom}
+.closing-live-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .8s ease}
+.closing-live-canvas.is-ready{opacity:1}
+.closing-motion-toggle{position:absolute;left:var(--gutter);bottom:calc(min(15.2vw,24svh)*1.18 + 44px);z-index:3;width:44px;height:44px;display:grid;place-items:center;border:1px solid #f3f1e880;border-radius:50%;color:var(--paper);background:#163e3540;backdrop-filter:blur(8px)}
+.closing-motion-toggle:hover{background:#163e3570}
+.closing-motion-toggle>svg{width:20px;height:20px}
 .closing-contact{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:56%;padding-top:100px;padding-bottom:24px}
 .closing-contact h2{font-size:min(clamp(62px,7vw,118px),12svh);line-height:.97;letter-spacing:-.035em}
 .closing-contact>.cta{margin-top:28px}
@@ -222,4 +227,4 @@ dialog{color:var(--ink);background:var(--paper);border:0;padding:0;max-height:92
  .closing-email{font-size:12px;margin-top:22px}
  .closing-brand{bottom:18px}
 }
-@media(prefers-reduced-motion:reduce){.closing-artwork{transform:none!important}}
+@media(prefers-reduced-motion:reduce){.closing-artwork{transform:none!important}.closing-live-canvas,.closing-motion-toggle{display:none}}

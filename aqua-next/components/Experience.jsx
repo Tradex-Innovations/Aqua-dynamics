@@ -8,6 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ProductExperience from './ProductExperience';
 import FactoryFilms from './FactoryFilms';
 import PeopleStory from './PeopleStory';
+import LivingFooter from './LivingFooter';
 import { sectors } from '../lib/content';
 import { siteConfig } from '../lib/site-config';
 
@@ -15,9 +16,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 function Arrow({ diagonal = false }) {
   return <svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={diagonal ? 'M5 19 19 5M5 5h14v14' : 'M4 12h15m-6-6 6 6-6 6'} stroke="currentColor" strokeWidth="1.5" /></svg>;
-}
-function Photo({ src, alt = '', sizes = '100vw', eager = false, className = '' }) {
-  return <Image src={assetPath(`/images/${src}`)} alt={alt} fill sizes={sizes} quality={85} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : undefined} className={className} />;
 }
 function CTA({ children, href, onClick, dark = false }) {
   const content = <><span>{children}</span><span className="cta-icon"><Arrow /></span></>;
@@ -110,7 +108,7 @@ export default function Experience() {
       <PeopleStory />
     </main>
     <footer id="contact" className="closing-scene" data-header-theme="light">
-      <div className="closing-artwork"><Photo src="wingfoil-deep-ocean-footer-v3.webp" alt="A wingfoil rider beneath a teal and ivory wing, with pale open sky above a deep expanse of teal ocean" /></div>
+      <LivingFooter />
       <div className="closing-contact page-gutter">
         <h2 data-reveal>Your next move.<br /><em>Starts here.</em></h2>
         <CTA dark onClick={() => enquire()}>Get in touch</CTA>

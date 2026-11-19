@@ -32,6 +32,12 @@ The supplied `public/202611191126 (1).mp4` (47.547 seconds) plays in full as the
 
 The video plays muted and inline, loops and includes a play/pause control. Playback events keep the control in sync with the browser. To replace it, update `heroVideo` and `heroPoster` in the config. Set `heroVideo` to `null` to show only the poster.
 
+## Living footer
+
+`components/LivingFooter.jsx` animates the existing wingfoil photograph with a WebGL shader: moving ocean ripples, subtle underwater sunlight and a gentle bob of the wing, rider and foil together. Pointer movement adds a small water drift. The sky and overlaid contact text remain clear, and the complete wordmark remains visible.
+
+The circular pause/play control stops and resumes the motion. Rendering is capped at 30fps and pauses offscreen and in hidden tabs. Reduced-motion preferences, unavailable WebGL and context loss use the original still image. The photo and animation both respect the GitHub Pages base path.
+
 ## Main files
 
 - `components/FactoryFilms.jsx`: three factory video chapters, playback and scroll transitions.
